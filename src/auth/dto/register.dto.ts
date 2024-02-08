@@ -15,7 +15,6 @@ export class RegisterDto extends LoginDto {
 
   @IsOptional()
   @IsString()
-  @IsNotEmpty({ message: 'Home Page is required' })
   @IsUrl({}, { message: 'Invalid URL format' })
   homePage: string;
 

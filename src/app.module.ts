@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { APP_FILTER } from '@nestjs/core';
+// import { APP_FILTER } from '@nestjs/core';
 
 import { ChatModule } from './chat/chat.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
@@ -11,7 +11,7 @@ import { CaptchaModule } from './captcha/captcha.module';
 import { CommentModule } from './comment/comment.module';
 
 import { SocketService } from './socket/socket.service';
-import { ErrorFilter } from './errors-filter/errors-filter';
+// import { ErrorFilter } from './errors-filter/errors-filter';
 
 import { Chat } from './chat/chat.entity';
 import { Member } from './member/member.entity';
@@ -45,10 +45,10 @@ import { Comment } from './comment/comment.entity';
   ],
   providers: [
     SocketService,
-    {
-      provide: APP_FILTER,
-      useClass: ErrorFilter,
-    },
+    // {
+    //   provide: APP_FILTER,
+    //   useClass: ErrorFilter,
+    // },
   ],
 })
 export class AppModule {}

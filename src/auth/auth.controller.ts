@@ -28,6 +28,9 @@ export class AuthController {
     @Session() session: any,
   ): Promise<IRegisterResponse> {
     try {
+      console.log(registerDto);
+      console.log(enteredCaptcha);
+      console.log(session);
       const data = await this.authService.create(
         registerDto,
         enteredCaptcha,
