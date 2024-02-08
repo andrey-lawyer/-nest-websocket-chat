@@ -27,8 +27,13 @@ async function bootstrap() {
       'http://localhost:5175',
       process.env.FRONT_URL,
     ],
-    credentials: false,
+    credentials: true,
     // credentials: process.env.FRONT_URL.includes('localhost') ? true : false,
+  });
+
+  app.use((_, res, next) => {
+    res.header('Access-Control-Allow-Credentials', 'true');
+    next();
   });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(PORT, () => console.log('server listening on port ' + PORT));
