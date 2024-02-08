@@ -25,7 +25,8 @@ async function bootstrap() {
       'https://react-socket-chat-zeta.vercel.app',
       'http://localhost:5173',
     ],
-    credentials: true,
+    // credentials: true,
+    credentials: false,
   });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(PORT, () => console.log('server listening on port ' + PORT));
