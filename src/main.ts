@@ -19,7 +19,11 @@ async function bootstrap() {
   //   origin: process.env.FRONT_URL || 'http://localhost:5173',
   //   credentials: true,
   // });
-  app.enableCors();
+  app.enableCors({
+    origin:
+      process.env.FRONT_URL || 'https://react-socket-chat-zeta.vercel.app',
+    credentials: true,
+  });
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(PORT, () => console.log('server listening on port ' + PORT));
 }
