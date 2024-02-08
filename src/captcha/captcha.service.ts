@@ -10,7 +10,7 @@ export class CaptchaService {
       color: true,
       background: '#f0f0f0',
     });
-    console.log(captcha);
+
     return { data: captcha.data, text: captcha.text };
   }
 
