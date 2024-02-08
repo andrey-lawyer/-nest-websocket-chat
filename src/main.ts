@@ -15,10 +15,11 @@ async function bootstrap() {
       saveUninitialized: false,
     }),
   );
-  app.enableCors({
-    origin: process.env.FRONT_URL || 'http://localhost:5173',
-    credentials: true,
-  });
+  // app.enableCors({
+  //   origin: process.env.FRONT_URL || 'http://localhost:5173',
+  //   credentials: true,
+  // });
+  app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
   await app.listen(PORT, () => console.log('server listening on port ' + PORT));
 }
