@@ -46,7 +46,7 @@ export class AuthService {
   ): Promise<IRegisterResponse> {
     const storedCaptcha = session?.captcha;
     // console.log('извлечени каптчи из сессии');
-    // console.log(session);
+    console.log(session);
 
     if (!this.captchaService.validateCaptcha(enteredCaptcha, storedCaptcha)) {
       throw new BadRequestException('Invalid CAPTCHA');

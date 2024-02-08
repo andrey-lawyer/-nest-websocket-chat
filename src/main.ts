@@ -20,8 +20,11 @@ async function bootstrap() {
   //   credentials: true,
   // });
   app.enableCors({
-    origin:
-      process.env.FRONT_URL || 'https://react-socket-chat-zeta.vercel.app',
+    origin: [
+      process.env.FRONT_URL,
+      'https://react-socket-chat-zeta.vercel.app',
+      'http://localhost:5173',
+    ],
     credentials: true,
   });
   app.useGlobalPipes(new ValidationPipe());
