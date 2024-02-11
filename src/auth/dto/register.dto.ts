@@ -8,8 +8,4 @@ export class RegisterDto extends LoginDto {
   readonly name: string;
 
   homePage?: string;
-
-  // @IsNotEmpty({ message: 'enteredCaptcha is required' })
-  // @IsString({ message: 'enteredCaptcha must be a string' })
-  // readonly captcha: string;
 }

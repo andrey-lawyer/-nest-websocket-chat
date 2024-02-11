@@ -7,10 +7,10 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Comment } from 'src/comment/comment.entity';
-import { IResponseMember } from 'src/auth/auth.service';
 import { Chat } from 'src/chat/chat.entity';
 import { SentCommentDto } from './dto/sentСomment.dto';
 import { validateTextWithAllowedTags } from 'src/validation/validator';
+import { IResponseMember } from 'src/types/response.type';
 
 @Injectable()
 export class CommentService {

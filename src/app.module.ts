@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
 
 import { ChatModule } from './chat/chat.module';
 import { CloudinaryModule } from './cloudinary/cloudinary.module';
 import { FilesModule } from './file/file.module';
 import { AuthModule } from './auth/auth.module';
-import { CaptchaModule } from './captcha/captcha.module';
 import { CommentModule } from './comment/comment.module';
 
 import { SocketService } from './socket/socket.service';
@@ -14,7 +14,6 @@ import { SocketService } from './socket/socket.service';
 import { Chat } from './chat/chat.entity';
 import { Member } from './member/member.entity';
 import { Comment } from './comment/comment.entity';
-import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
 
 @Module({
   imports: [
@@ -44,7 +43,6 @@ import { GoogleRecaptchaModule } from '@nestlab/google-recaptcha';
     FilesModule,
     CloudinaryModule,
     AuthModule,
-    CaptchaModule,
     CommentModule,
   ],
   providers: [SocketService],

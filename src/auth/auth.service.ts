@@ -10,48 +10,23 @@ import * as bcrypt from 'bcrypt';
 
 import { RegisterDto } from './dto/register.dto';
 
-import { ITokenUser } from './types';
 import { Member } from 'src/member/member.entity';
-// import { CaptchaService } from 'src/captcha/captcha.service';
 import axios from 'axios';
-
-export interface IRegisterResponse {
-  message: string;
-  member: {
-    name: string;
-    email: string;
-    avatar: string;
-  };
-}
-
-export interface IResponseMember {
-  id: number;
-  name: string;
-  email: string;
-}
+import {
+  IRegisterResponse,
+  IResponseMember,
+  ITokenUser,
+} from 'src/types/response.type';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(Member)
     private readonly userRepository: Repository<Member>,
-    // private readonly captchaService: CaptchaService,
     private readonly jwtService: JwtService,
   ) {}
 
-  async create(
-    registerDto: RegisterDto,
-    // enteredCaptcha: string,
-    // session: { captcha: string },
-  ): Promise<IRegisterResponse> {
-    // const storedCaptcha = session?.captcha;
-    // console.log('извлечени каптчи из сессии');
-    // console.log(session);
-
-    // if (!this.captchaService.validateCaptcha(enteredCaptcha, storedCaptcha)) {
-    //   throw new BadRequestException('Invalid CAPTCHA');
-    // }
-
+  async create(registerDto: RegisterDto): Promise<IRegisterResponse> {
     const user = await this.userRepository.findOneBy({
       email: registerDto.email,
     });
@@ -66,10 +41,6 @@ export class AuthService {
     });
 
     const { email, name } = await this.userRepository.save(newUser);
-
-    // Генерация новой капчи и сохранение в сессию
-    // const newCaptcha = this.captchaService.generateCaptcha();
-    // session.captcha = newCaptcha.text;
 
     return {
       message: 'Member successfully registered',
@@ -100,11 +71,6 @@ export class AuthService {
       return result;
     }
     return null;
-  }
-
-  // for jwt strategy
-  async validateUserById(userId: number): Promise<Member> {
-    return this.userRepository.findOneOrFail({ where: { id: userId } });
   }
 
   async authenticateSocketUser(

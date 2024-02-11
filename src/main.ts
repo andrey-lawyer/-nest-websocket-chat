@@ -1,27 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 
-import * as session from 'express-session';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { GoogleRecaptchaFilter } from './filter-error/captcha-error';
 
-// import * as connectRedis from 'connect-redis';
-// import { default as Redis } from 'ioredis';
-
 async function bootstrap() {
   const PORT = process.env.PORT || 5000;
-  // const RedisStore = connectRedis(session);
-  // const redisClient = new Redis();
+
   const app = await NestFactory.create(AppModule);
-  //
-  app.use(
-    session({
-      // store: new RedisStore({ client: redisClient }),
-      saveUninitialized: false,
-      secret: process.env.PRIVATE_KEY,
-      resave: false,
-    }),
-  );
 
   app.enableCors({
     origin: [

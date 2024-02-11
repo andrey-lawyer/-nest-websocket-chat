@@ -3,9 +3,9 @@ import * as xss from 'xss';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Chat } from './chat.entity';
 import { Repository } from 'typeorm';
-import { IResponseMember } from 'src/auth/auth.service';
 import { SentMessageDto } from './dto/sentMessage.dto';
 import { validateTextWithAllowedTags } from 'src/validation/validator';
+import { IResponseMember } from 'src/types/response.type';
 
 @Injectable()
 export class ChatService {

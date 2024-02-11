@@ -3,8 +3,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 
-import { CaptchaModule } from 'src/captcha/captcha.module';
-
 import { AuthController } from './auth.controller';
 
 import { AuthService } from './auth.service';
@@ -19,8 +17,6 @@ import { Member } from 'src/member/member.entity';
   imports: [
     TypeOrmModule.forFeature([Member]),
     PassportModule,
-    CaptchaModule,
-
     JwtModule.registerAsync({
       useFactory: () => ({
         secret: process.env.PRIVATE_KEY || 'secret_key',
