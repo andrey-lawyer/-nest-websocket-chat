@@ -1,6 +1,4 @@
-# DataSyncWithSheets
-
-## Next-Leaflet
+## Nest-websocket-chat
 
 - [Introduction](#introduction)
 - [Installation](#installation)
@@ -41,17 +39,18 @@ npm install
 
 3. **Create a .env file** in the root directory with the following content:
 
+- FRONT_URL=url for frontend
 - POSTGRES_HOST=your_postgres_host
 - POSTGRES_PORT_DB=your_postgres_port
 - POSTGRES_USER=your_postgres_user
 - POSTGRES_PASSWORD=your_postgres_password
 - POSTGRES_DB=your_postgres_db
 - CLOUD_NAME=your name for cloudinary.com
-- CLOUD_API_KEY= your api key for cloudinary.com
-- CLOUD_API_SECRET = your api secret for cloudinary.com
-- PRIVATE_KEY = your key for Jwt
-- API_KEY_AVATAR = your key for multiavatar.com
-- CAPTCHA_KEY = your key google recaptcha
+- CLOUD_API_KEY=your api key for cloudinary.com
+- CLOUD_API_SECRET=your api secret for cloudinary.com
+- PRIVATE_KEY=your key for Jwt
+- API_KEY_AVATAR=your key for multiavatar.com
+- CAPTCHA_KEY=your key google recaptcha
 
 ## Usage
 
