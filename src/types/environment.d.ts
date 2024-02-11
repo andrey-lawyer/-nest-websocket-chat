@@ -18,6 +18,7 @@ declare global {
       API_KEY_AVATAR: string;
       REFERENCE_ID: string;
       AWS_REGION: string;
+      CAPTCHA_KEY: string;
     }
   }
 }

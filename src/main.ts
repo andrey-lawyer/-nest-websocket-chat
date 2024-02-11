@@ -1,46 +1,44 @@
 import { NestFactory } from '@nestjs/core';
+
 import * as session from 'express-session';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { GoogleRecaptchaFilter } from './filter-error/captcha-error';
+
+// import * as connectRedis from 'connect-redis';
+// import { default as Redis } from 'ioredis';
 
 async function bootstrap() {
   const PORT = process.env.PORT || 5000;
-
+  // const RedisStore = connectRedis(session);
+  // const redisClient = new Redis();
   const app = await NestFactory.create(AppModule);
-
+  //
   app.use(
     session({
-      secret: process.env.SESSION_SECRET,
-      resave: false,
+      // store: new RedisStore({ client: redisClient }),
       saveUninitialized: false,
+      secret: process.env.PRIVATE_KEY,
+      resave: false,
     }),
   );
-  // app.enableCors({
-  //   origin: process.env.FRONT_URL || 'http://localhost:5173',
-  //   credentials: true,
-  // });
+
   app.enableCors({
     origin: [
       'https://react-socket-chat-zeta.vercel.app',
+      'https://react-sockets.netlify.app',
+      'https://reacy-sockets.onrender.com',
       'http://localhost:5173',
       'http://localhost:5174',
       'http://localhost:5175',
+      'http://localhost',
       process.env.FRONT_URL,
     ],
     credentials: true,
-    // credentials: process.env.FRONT_URL.includes('localhost') ? true : false,
   });
 
-  app.use((_, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Content-Type, Authorization',
-    );
-    next();
-  });
   app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new GoogleRecaptchaFilter());
   await app.listen(PORT, () => console.log('server listening on port ' + PORT));
 }
 bootstrap();

@@ -5,36 +5,31 @@ import {
   UseGuards,
   Request as RequestNest,
   BadRequestException,
-  Session,
+  // Session,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { AuthService, IRegisterResponse } from './auth.service';
 
 import { RegisterDto } from './dto/register.dto';
 import { LocalAuthGuard } from 'src/guards/local-auth.guard';
-import { CaptchaService } from 'src/captcha/captcha.service';
+// import { CaptchaService } from 'src/captcha/captcha.service';
+import { Recaptcha } from '@nestlab/google-recaptcha';
 
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
-    private readonly captchaService: CaptchaService,
+    // private readonly captchaService: CaptchaService,
   ) {}
 
+  @Recaptcha()
   @Post('register')
-  async register(
-    @Body() registerDto: RegisterDto,
-    @Body('captcha') enteredCaptcha: string,
-    @Session() session: any,
-  ): Promise<IRegisterResponse> {
+  async register(@Body() registerDto: RegisterDto): Promise<IRegisterResponse> {
     try {
-      console.log(registerDto);
-      console.log(enteredCaptcha);
-      console.log(session);
       const data = await this.authService.create(
         registerDto,
-        enteredCaptcha,
-        session,
+        // enteredCaptcha,
+        // session,
       );
       return data;
     } catch (error) {

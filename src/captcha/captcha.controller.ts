@@ -13,6 +13,7 @@ export class CaptchaController {
   ): Promise<void> {
     const captcha = this.captchaService.generateCaptcha();
     session.captcha = captcha.text;
+    console.log('GET');
     console.log(session);
     res.type('svg').status(200).send(captcha.data);
   }

@@ -113,7 +113,6 @@ export class SocketService implements OnGatewayConnection {
     @ConnectedSocket()
     client: Socket,
   ) {
-    // console.log(page);
     const { messages, totalMessages } =
       await this.chatService.findAllMessagesAndTotal(page);
 
