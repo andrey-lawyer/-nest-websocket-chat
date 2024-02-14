@@ -72,7 +72,7 @@ This project is built using the following technologies:
 
 ## Schema
 
-The database schema includes tables for Member, Chat, Comment. The relationships between these tables allow for organizing products based on various criteria.
+The database schema includes tables for Member, Chat, Comment. The database schema includes tables for Member, Chat, Comment. Relationships between these tables allow you to organise messages between different users.
 
 ## Running
 
