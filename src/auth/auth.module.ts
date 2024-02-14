@@ -7,9 +7,9 @@ import { AuthController } from './auth.controller';
 
 import { AuthService } from './auth.service';
 
-import { LocalStrategy } from 'src/strategy/local.strategy';
+import { LocalStrategy } from 'src/auth/strategy/local.strategy';
 
-import { LocalAuthGuard } from 'src/guards/local-auth.guard';
+import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 
 import { Member } from 'src/member/member.entity';
 

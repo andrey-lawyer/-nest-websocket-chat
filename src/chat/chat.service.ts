@@ -21,7 +21,6 @@ export class ChatService {
     if (!data.text.trim()) {
       throw new BadRequestException('Validation failed: Text cannot be empty');
     }
-    // data.text = `<div>${data.text}</div>`;
     data.text = `<div>${xss.filterXSS(data.text)}</div>`;
     if (!validateTextWithAllowedTags(data.text)) {
       throw new BadRequestException('Validation failed: Invalid HTML tags');

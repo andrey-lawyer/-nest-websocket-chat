@@ -10,7 +10,7 @@ import { Request } from 'express';
 import { AuthService } from './auth.service';
 
 import { RegisterDto } from './dto/register.dto';
-import { LocalAuthGuard } from 'src/guards/local-auth.guard';
+import { LocalAuthGuard } from 'src/auth/guards/local-auth.guard';
 import { Recaptcha } from '@nestlab/google-recaptcha';
 
 import { IRegisterResponse } from './../types/response.type';

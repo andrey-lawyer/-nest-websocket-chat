@@ -1,6 +1,7 @@
 import {
   IsBase64,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   Validate,
@@ -13,12 +14,15 @@ export class SentMessageDto {
   @Validate(validateTextWithAllowedTags)
   text: string;
 
-  page?: number;
-
   @IsOptional()
   @IsBase64()
   file: string | undefined;
 
   @IsOptional()
   fileType: string;
+}
+
+export class SentMessageWithPageDto extends SentMessageDto {
+  @IsNumber()
+  page: number;
 }

@@ -1,6 +1,7 @@
 import {
   IsBase64,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   Validate,
@@ -13,8 +14,6 @@ export class SentCommentDto {
   @Validate(validateTextWithAllowedTags)
   text: string;
 
-  page?: number;
-
   @IsOptional()
   @IsBase64()
   file: string | undefined;
@@ -24,4 +23,9 @@ export class SentCommentDto {
 
   @IsOptional()
   fileType: string;
+}
+
+export class SentCommentWithPageDto extends SentCommentDto {
+  @IsNumber()
+  page: number;
 }

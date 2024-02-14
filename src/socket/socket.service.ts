@@ -10,11 +10,14 @@ import * as sharp from 'sharp';
 import { Socket } from 'dgram';
 import { Server } from 'http';
 import { ChatService } from 'src/chat/chat.service';
-import { SentMessageDto } from 'src/chat/dto/sentMessage.dto';
+import {
+  SentMessageDto,
+  SentMessageWithPageDto,
+} from 'src/chat/dto/sentMessage.dto';
 import { FilesService } from 'src/file/file.service';
 import { AuthService } from 'src/auth/auth.service';
 import { CommentService } from 'src/comment/comment.service';
-import { SentCommentDto } from 'src/comment/dto/sentСomment.dto';
+import { SentCommentWithPageDto } from 'src/comment/dto/sentСomment.dto';
 import { SortDto } from 'src/chat/dto/sort.dto';
 
 @WebSocketGateway({ cors: true })
@@ -28,7 +31,7 @@ export class SocketService implements OnGatewayConnection {
 
   @SubscribeMessage('server-add-comment')
   async handleAddComment(
-    @MessageBody() data: SentCommentDto,
+    @MessageBody() data: SentCommentWithPageDto,
     @ConnectedSocket()
     client: Socket & { handshake: { auth: { token: string } } },
   ) {
@@ -83,7 +86,7 @@ export class SocketService implements OnGatewayConnection {
 
   @SubscribeMessage('server-message')
   async handleAddMessage(
-    @MessageBody() data: SentMessageDto,
+    @MessageBody() data: SentMessageWithPageDto,
     @ConnectedSocket()
     client: Socket & { handshake: { auth: { token: string } } },
   ) {

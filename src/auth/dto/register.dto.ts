@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, Length } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, Length } from 'class-validator';
 import { LoginDto } from './login.dto';
 
 export class RegisterDto extends LoginDto {
@@ -7,5 +7,6 @@ export class RegisterDto extends LoginDto {
   @Length(2, 20, { message: 'min 4 letters, max - 20' })
   readonly name: string;
 
-  homePage?: string;
+  @IsOptional()
+  homePage: string;
 }
