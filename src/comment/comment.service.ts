@@ -10,7 +10,7 @@ import { Comment } from 'src/comment/comment.entity';
 import { Chat } from 'src/chat/chat.entity';
 import { SentCommentDto } from './dto/sentСomment.dto';
 import { validateTextWithAllowedTags } from 'src/validation/validator';
-import { IResponseMember } from 'src/types/response.type';
+import { IResponseMember } from 'src/member/responseMember.type';
 
 @Injectable()
 export class CommentService {

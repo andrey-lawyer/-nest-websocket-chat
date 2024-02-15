@@ -5,7 +5,7 @@ import { Chat } from './chat.entity';
 import { Repository } from 'typeorm';
 import { SentMessageDto } from './dto/sentMessage.dto';
 import { validateTextWithAllowedTags } from 'src/validation/validator';
-import { IResponseMember } from 'src/types/response.type';
+import { IResponseMember } from 'src/member/responseMember.type';
 
 @Injectable()
 export class ChatService {

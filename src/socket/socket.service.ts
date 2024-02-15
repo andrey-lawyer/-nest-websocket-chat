@@ -15,18 +15,18 @@ import {
   SentMessageWithPageDto,
 } from 'src/chat/dto/sentMessage.dto';
 import { FilesService } from 'src/file/file.service';
-import { AuthService } from 'src/auth/auth.service';
 import { CommentService } from 'src/comment/comment.service';
 import { SentCommentWithPageDto } from 'src/comment/dto/sentСomment.dto';
 import { SortDto } from 'src/chat/dto/sort.dto';
+import { MemberService } from 'src/member/member.service';
 
 @WebSocketGateway({ cors: true })
 export class SocketService implements OnGatewayConnection {
   constructor(
     private readonly chatService: ChatService,
     private readonly filesService: FilesService,
-    private readonly authService: AuthService,
     private readonly commentService: CommentService,
+    private readonly memberService: MemberService,
   ) {}
 
   @SubscribeMessage('server-add-comment')
@@ -167,7 +167,7 @@ export class SocketService implements OnGatewayConnection {
     const authToken = client.handshake.auth.token;
 
     try {
-      const user = await this.authService.authenticateSocketUser(authToken);
+      const user = await this.memberService.authenticateSocketMember(authToken);
 
       if (!user) {
         client.emit('auth-error', 'Invalid authentication token');

@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
@@ -12,11 +8,8 @@ import { RegisterDto } from './dto/register.dto';
 
 import { Member } from 'src/member/member.entity';
 import axios from 'axios';
-import {
-  IRegisterResponse,
-  IResponseMember,
-  ITokenUser,
-} from 'src/types/response.type';
+import { RegisterResponseDto } from './dto/registerResponse.dto';
+import { LoginResponseDto } from './dto/loginResponse.dto';
 
 @Injectable()
 export class AuthService {
@@ -26,7 +19,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async create(registerDto: RegisterDto): Promise<IRegisterResponse> {
+  async create(registerDto: RegisterDto): Promise<RegisterResponseDto> {
     const user = await this.userRepository.findOneBy({
       email: registerDto.email,
     });
@@ -48,7 +41,7 @@ export class AuthService {
     };
   }
 
-  async login(user: any): Promise<ITokenUser | null> {
+  async login(user: any): Promise<LoginResponseDto | null> {
     const accessToken = this.jwtService.sign({
       sub: user.id,
       email: user.email,
@@ -71,23 +64,6 @@ export class AuthService {
       return result;
     }
     return null;
-  }
-
-  async authenticateSocketUser(
-    authToken: string,
-  ): Promise<IResponseMember | null> {
-    try {
-      const decodedToken = this.jwtService.verify(authToken);
-      const userId = decodedToken.sub;
-      const user = await this.userRepository.findOneOrFail({
-        where: { id: userId },
-      });
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password: _, ...result } = user;
-      return result;
-    } catch (error) {
-      throw new UnauthorizedException('Invalid socket authentication token');
-    }
   }
 
   generateAvatar = async (name: string): Promise<string> => {

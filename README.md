@@ -2,6 +2,7 @@
 
 - [Introduction](#introduction)
 - [Installation](#installation)
+- [Endpoints](#endpoints)
 - [Usage](#usage)
 - [Schema](#schema)
 - [Running](#running)
@@ -22,6 +23,15 @@ This project is a chat application built using Nest.js and WebSockets. The appli
 - **PostgreSQL Database:** Chosen for its reliability, performance, and support for complex queries. PostgreSQL stores user data, chat messages, and room information.
 
 - **Axios:** Axios is a popular HTTP client used for making requests to external APIs. It is employed for fetching data in this project.
+
+- **Swagger Documentation:** Utilized for documenting the REST API endpoints, Swagger provides a clear and interactive documentation interface for developers to understand and interact with the API.
+
+## Endpoints
+
+The Swagger documentation provides detailed information about the available API endpoints. You can explore the endpoints and their usage below:
+
+- `/auth/login`: Endpoint for user login.
+- `/auth/register`: Endpoint for user registration.
 
 ## Installation
 

@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { GoogleRecaptchaFilter } from './filter-error/captcha-error';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const PORT = process.env.PORT || 5000;
@@ -22,7 +23,18 @@ async function bootstrap() {
     ],
     credentials: true,
   });
-
+  // Swagger
+  const config = new DocumentBuilder()
+    .setTitle('Nest Socket Chat API')
+    .setDescription('API documentation for Nest Socket Chat application.')
+    .setVersion('1.0')
+    .addTag(
+      'Authentication',
+      'Endpoints for user authentication and authorization.',
+    )
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('docs', app, document);
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new GoogleRecaptchaFilter());
   await app.listen(PORT, () => console.log('server listening on port ' + PORT));

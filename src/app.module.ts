@@ -14,6 +14,7 @@ import { SocketService } from './socket/socket.service';
 import { Chat } from './chat/chat.entity';
 import { Member } from './member/member.entity';
 import { Comment } from './comment/comment.entity';
+import { MemberModule } from './member/member.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { Comment } from './comment/comment.entity';
     CloudinaryModule,
     AuthModule,
     CommentModule,
+    MemberModule,
   ],
   providers: [SocketService],
 })
